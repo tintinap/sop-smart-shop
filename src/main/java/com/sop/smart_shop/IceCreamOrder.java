@@ -3,6 +3,18 @@ package com.sop.smart_shop;
 import java.util.List;
 
 public class IceCreamOrder {
+    private IceCreamOrder() {
+
+    }
+    private static IceCreamOrder INSTANCE;
+
+    public static IceCreamOrder getInstance() {
+        if(INSTANCE == null) {
+            INSTANCE = new IceCreamOrder();
+        }
+        return INSTANCE;
+    }
+
 
     private static IceCream[] menu =  {
             new IceCreamFactory().createIceCream(1, "Vanilla", 10.0, "cone"),
@@ -16,14 +28,14 @@ public class IceCreamOrder {
         return menu;
     }
 
-    public static List<IceCream> myOrder() {
+    public List<IceCream> myOrder() {
         return Cart.currentOrder();
     }
 
-    public static List<IceCream> orderIceCream(int id){
+    public List<IceCream> orderIceCream(int id){
         return Cart.addIceCream(id, menu);
     }
-    public static List<IceCream> cancelIceCream(int id){
+    public List<IceCream> cancelIceCream(int id){
         return Cart.deleteIceCream(id);
     }
 }

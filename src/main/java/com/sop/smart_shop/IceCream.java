@@ -1,6 +1,8 @@
 package com.sop.smart_shop;
 
-public class IceCream {
+import java.io.Serializable;
+
+public class IceCream implements Serializable {
     private int id;
     private String flavor;
     private Double price;

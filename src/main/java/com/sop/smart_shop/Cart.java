@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-    private static List<IceCream> orderInCart = new ArrayList<>();
+    private static Storage_manager SM = new Storage_manager();
+    private static List<IceCream> orderInCart = SM.readOrderFile("order.dat");
 
     public static List<IceCream> currentOrder() {
         return orderInCart;
@@ -16,6 +17,7 @@ public class Cart {
                 orderInCart.add(iceCream);
             }
         }
+        SM.writeOrderFile("order.dat", orderInCart);
         return orderInCart;
     }
 
@@ -27,11 +29,13 @@ public class Cart {
                 orderInCart.remove(index);
             }
         }
+        SM.writeOrderFile("order.dat", orderInCart);
         return orderInCart;
     }
 
     public static List<IceCream> clearIceCream() {
         orderInCart = new ArrayList<>();
-        return null;
+        SM.writeOrderFile("order.dat", orderInCart);
+        return orderInCart;
     }
 }
